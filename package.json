@@ -5,6 +5,8 @@
     "@mui/icons-material": "^7.3.1",
     "@mui/material": "^7.3.1",
     "axios": "^1.11.0",
+    "echarts": "^5.6.0",
+    "echarts-for-react": "^3.0.2",
     "jwt-decode": "^4.0.0",
     "react-router-dom": "^7.8.2",
     "zustand": "^5.0.8"
