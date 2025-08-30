@@ -57,10 +57,7 @@ export default function MainLayout() {
 
       <Box component="main" sx={{flexGrow: 1, width: {md: `calc(100% - ${drawerWidth}px)`}}}>
         <Toolbar/>
-        <Container
-          maxWidth={false}
-          sx={{py: 3, px: {xs: 2, md: 3}}}
-        >
+        <Container>
           <Outlet/>
         </Container>
       </Box>
