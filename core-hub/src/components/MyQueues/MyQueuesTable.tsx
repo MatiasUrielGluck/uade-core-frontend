@@ -27,7 +27,7 @@ export default function MyQueuesTable({rows, onPause, onResume, onPurge}: Props)
       <Table
         size="small"
         sx={{
-          tableLayout: 'fixed',
+          width: "100%",
           minWidth: {xs: 520, sm: 680, md: 0},
           '& .MuiTableCell-root': {
             borderBottom: 'none',
