@@ -1,5 +1,6 @@
 import { Navigate } from 'react-router-dom';
 import MainLayout from "../layouts/MainLayout.tsx";
+import MyQueuesPage from "../pages/MyQueuesPage.tsx";
 
 export default [
   {
@@ -20,7 +21,7 @@ export default [
       },
       {
         path: 'my-queues',
-        element: <><h1>My Queues</h1></>,
+        element: <MyQueuesPage/>,
       },
       {
         path: 'search',

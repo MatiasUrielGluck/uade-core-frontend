@@ -57,7 +57,11 @@ export default function MainLayout() {
 
       <Box component="main" sx={{flexGrow: 1, width: {md: `calc(100% - ${drawerWidth}px)`}}}>
         <Toolbar/>
-        <Container sx={{py: 3}}>
+        <Container
+          maxWidth={false}          // 👈 IMPORTANTE: boolean, no string
+          disableGutters            // opcional: sin gutters del Container
+          sx={{py: 3, px: {xs: 2, md: 3}}} // agregás padding manual
+        >
           <Outlet/>
         </Container>
       </Box>
