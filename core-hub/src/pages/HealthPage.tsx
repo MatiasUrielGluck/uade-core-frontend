@@ -71,31 +71,6 @@ function StatusChip({ s }: { s: "OK" | "WARN" | "DOWN" }) {
 export default function HealthPage() {
   const theme = useTheme();
 
-  // Mini chart para “Alertas activas”
-  const alertsOption = {
-    grid: { left: 30, right: 10, top: 10, bottom: 24 },
-    xAxis: {
-      type: "category",
-      data: ["Crit", "Warn", "Info"],
-      axisTick: { show: false },
-    },
-    yAxis: {
-      type: "value",
-      splitLine: { show: false },
-      axisTick: { show: false },
-    },
-    series: [
-      {
-        type: "bar",
-        data: [3, 5, 12],
-        itemStyle: { color: "#5c6bc0" },
-        barWidth: 18,
-        emphasis: { focus: "series" },
-      },
-    ],
-    tooltip: { trigger: "axis" },
-  };
-
   return (
     <div className={styles.page}>
       <div

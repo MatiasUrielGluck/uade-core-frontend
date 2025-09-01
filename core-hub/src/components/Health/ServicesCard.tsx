@@ -1,5 +1,3 @@
-// components/Health/ServicesCard.tsx
-import * as React from "react";
 import {
   Card,
   CardContent,
@@ -8,8 +6,8 @@ import {
   Chip,
   Tooltip,
   useMediaQuery,
-  Theme,
 } from "@mui/material";
+import type { Theme } from "@mui/material";
 
 type ServiceStatus = "OK" | "DELAYED" | "DOWN";
 export type ServiceItem = {
@@ -47,10 +45,10 @@ function statusColor(s: ServiceStatus) {
 }
 
 /* ---------- constants (alineación & estilo) ---------- */
-const CHIP_MIN_WIDTH = 72;      // para que no “salte”
-const CHIP_BORDER_WIDTH = 1;    // entero → evita medias posiciones
-const CHIP_LABEL_PX = 1;        // 1 = 8px padding interno del texto
-const CARD_RADIUS_PX = 1;      // radio suave igual al resto de tus cards
+const CHIP_MIN_WIDTH = 72;
+const CHIP_BORDER_WIDTH = 1;
+const CHIP_LABEL_PX = 1;
+const CARD_RADIUS_PX = 1;
 
 const MOCK: ServiceItem[] = [
   { id: "1", name: "orders-service", status: "OK" },
@@ -72,7 +70,7 @@ export default function ServicesCard({
 
   // Col derecha fija; izquierda flexible
   const rightColDesktop = 108; // px
-  const rightColTablet = 100;  // px
+  const rightColTablet = 100; // px
   const templateDesktop = `minmax(0, 1fr) ${rightColDesktop}px`;
   const templateTablet = `minmax(0, 1fr) ${rightColTablet}px`;
 
@@ -83,7 +81,7 @@ export default function ServicesCard({
         height: "100%",
         display: "flex",
         flexDirection: "column",
-        borderRadius: CARD_RADIUS_PX, // 👈 radio controlado, no óvalo
+        borderRadius: CARD_RADIUS_PX,
       }}
     >
       <CardContent sx={{ pt: 1.5, pr: 2, pb: 1, pl: 1 }}>
@@ -100,20 +98,28 @@ export default function ServicesCard({
             gridTemplateColumns: isDesktop ? templateDesktop : templateTablet,
             alignItems: "center",
             gap: 1,
-            px: 1, pr: 2, py: 0.75,          // mismos paddings que el body
+            px: 1,
+            pr: 2,
+            py: 0.75,
             borderTop: (t) => `1px solid ${t.palette.divider}`,
             borderBottom: (t) => `1px solid ${t.palette.divider}`,
             backgroundColor: (t) => t.palette.action.hover,
           }}
         >
-          <Typography variant="caption" sx={{ fontWeight: 700, textTransform: "uppercase", opacity: 0.7 }}>
+          <Typography
+            variant="caption"
+            sx={{ fontWeight: 700, textTransform: "uppercase", opacity: 0.7 }}
+          >
             Servicio
           </Typography>
 
-          {/* 👇 “Ghost chip” para replicar el offset del texto del chip real */}
+          {/* “Ghost chip” para alinear con la columna de estado */}
           <Chip
             label={
-              <Typography variant="caption" sx={{ fontWeight: 700, textTransform: "uppercase", opacity: 0.7 }}>
+              <Typography
+                variant="caption"
+                sx={{ fontWeight: 700, textTransform: "uppercase", opacity: 0.7 }}
+              >
                 Estado
               </Typography>
             }
@@ -121,16 +127,13 @@ export default function ServicesCard({
             variant="outlined"
             sx={{
               justifySelf: "start",
-              // que ocupe como el chip real pero sin ruido visual
               minWidth: CHIP_MIN_WIDTH,
               px: 0,
               borderWidth: 0,
               borderColor: "transparent",
               backgroundColor: "transparent",
               pointerEvents: "none",
-              "& .MuiChip-label": {
-                px: CHIP_LABEL_PX, // 👈 mismo padding que los chips de la columna
-              },
+              "& .MuiChip-label": { px: CHIP_LABEL_PX },
             }}
           />
         </Box>
@@ -148,16 +151,26 @@ export default function ServicesCard({
               onClick={clickable ? () => onRowClick!(item) : undefined}
               sx={{
                 display: { xs: "block", md: "grid" },
-                gridTemplateColumns: { md: isDesktop ? templateDesktop : templateTablet },
+                gridTemplateColumns: {
+                  md: isDesktop ? templateDesktop : templateTablet,
+                },
                 alignItems: { xs: "stretch", md: "center" },
                 columnGap: { xs: 1, md: 1 },
                 rowGap: { xs: 0.5, md: 0 },
-                px: 1, pr: 2, py: { xs: 1, md: 0.9 },
+                px: 1,
+                pr: 2,
+                py: { xs: 1, md: 0.9 },
                 cursor: clickable ? "pointer" : "default",
-                backgroundColor: (t) => (idx % 2 ? t.palette.action.hover : "transparent"),
-                borderBottom: (t) => (idx < items.length - 1 ? `1px dashed ${t.palette.divider}` : "none"),
+                backgroundColor: (t) =>
+                  idx % 2 ? t.palette.action.hover : "transparent",
+                borderBottom: (t) =>
+                  idx < items.length - 1
+                    ? `1px dashed ${t.palette.divider}`
+                    : "none",
                 transition: "background-color 120ms ease",
-                "&:hover": clickable ? { backgroundColor: (t) => t.palette.action.selected } : undefined,
+                "&:hover": clickable
+                  ? { backgroundColor: (t) => t.palette.action.selected }
+                  : undefined,
               }}
             >
               {/* Servicio (wrap/clamp) */}
@@ -194,7 +207,11 @@ export default function ServicesCard({
                       minWidth: CHIP_MIN_WIDTH,
                       px: 0,
                       borderWidth: CHIP_BORDER_WIDTH,
-                      "& .MuiChip-label": { px: CHIP_LABEL_PX, fontWeight: 700, letterSpacing: 0.2 },
+                      "& .MuiChip-label": {
+                        px: CHIP_LABEL_PX,
+                        fontWeight: 700,
+                        letterSpacing: 0.2,
+                      },
                     }}
                   />
                 </Box>
@@ -210,7 +227,11 @@ export default function ServicesCard({
                     minWidth: CHIP_MIN_WIDTH,
                     px: 0,
                     borderWidth: CHIP_BORDER_WIDTH,
-                    "& .MuiChip-label": { px: CHIP_LABEL_PX, fontWeight: 700, letterSpacing: 0.2 },
+                    "& .MuiChip-label": {
+                      px: CHIP_LABEL_PX,
+                      fontWeight: 700,
+                      letterSpacing: 0.2,
+                    },
                   }}
                 />
               )}

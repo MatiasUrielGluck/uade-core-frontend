@@ -1,6 +1,7 @@
 import { alpha, useTheme } from '@mui/material/styles';
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
-import MyQueuesRow, { QueueRow } from './MyQueuesRow';
+import MyQueuesRow from './MyQueuesRow';
+import type { QueueRow } from './MyQueuesRow';
 
 type Props = {
   rows: QueueRow[];

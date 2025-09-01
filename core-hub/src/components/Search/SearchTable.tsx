@@ -11,8 +11,8 @@ import {
   DialogContent,
   Divider,
   useMediaQuery,
-  Theme,
 } from "@mui/material";
+import type { Theme } from "@mui/material/styles";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import CloseIcon from "@mui/icons-material/Close";
 

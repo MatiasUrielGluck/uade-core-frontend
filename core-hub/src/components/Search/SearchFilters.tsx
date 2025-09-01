@@ -1,5 +1,3 @@
-// components/Search/SearchFilters.tsx
-import * as React from "react";
 import {
   Box,
   Stack,

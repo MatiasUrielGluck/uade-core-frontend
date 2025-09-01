@@ -1,5 +1,15 @@
-import { Chip, IconButton, LinearProgress, Stack, TableCell, TableRow, Tooltip, Typography } from '@mui/material';
+import {
+  Chip,
+  IconButton,
+  LinearProgress,
+  Stack,
+  TableCell,
+  TableRow,
+  Tooltip,
+  Typography,
+} from '@mui/material';
 import { alpha, useTheme } from '@mui/material/styles';
+import type { Theme } from '@mui/material/styles';
 import InfoOutlined from '@mui/icons-material/InfoOutlined';
 import PlayArrowRounded from '@mui/icons-material/PlayArrowRounded';
 import PauseRounded from '@mui/icons-material/PauseRounded';
@@ -18,10 +28,16 @@ export type QueueRow = {
 };
 
 function statusColor(status: QueueStatus) {
-  return status === 'Running' ? 'success' : status === 'Paused' ? 'default' : 'warning';
+  return status === 'Running'
+    ? 'success'
+    : status === 'Paused'
+    ? 'default'
+    : 'warning';
 }
 
-function healthColor(palette: typeof import('@mui/material/styles').createTheme extends (...args: any) => infer T ? T : any['palette'], v: number) {
+// ✅ Tipamos con Theme y usamos la palette que ya trae success/warning/error
+function healthColor(theme: Theme, v: number) {
+  const { palette } = theme;
   if (v >= 85) return palette.success.main;
   if (v >= 60) return palette.warning.main;
   return palette.error.main;
@@ -35,7 +51,13 @@ type Props = {
   onPurge?: (row: QueueRow) => void;
 };
 
-export default function MyQueuesRow({row, index, onPause, onResume, onPurge}: Props) {
+export default function MyQueuesRow({
+  row,
+  index,
+  onPause,
+  onResume,
+  onPurge,
+}: Props) {
   const theme = useTheme();
 
   return (
@@ -44,11 +66,15 @@ export default function MyQueuesRow({row, index, onPause, onResume, onPurge}: Pr
       sx={{
         transition: 'transform .15s ease, background-color .15s ease',
         borderRadius: 2,
-        backgroundColor: index % 2 === 0
-          ? alpha(theme.palette.text.primary, 0.02)
-          : 'transparent',
+        backgroundColor:
+          index % 2 === 0
+            ? alpha(theme.palette.text.primary, 0.02)
+            : 'transparent',
         '&:hover': {
-          backgroundColor: alpha(theme.palette.primary.main, theme.palette.mode === 'dark' ? 0.08 : 0.06),
+          backgroundColor: alpha(
+            theme.palette.primary.main,
+            theme.palette.mode === 'dark' ? 0.08 : 0.06
+          ),
           transform: 'translateY(-1px)',
         },
       }}
@@ -57,13 +83,15 @@ export default function MyQueuesRow({row, index, onPause, onResume, onPurge}: Pr
         <Stack direction="row" spacing={1} alignItems="center">
           <Typography fontWeight={600}>{row.name}</Typography>
           <Tooltip title={`Throughput: ${row.activityRate} msgs/s`} arrow>
-            <InfoOutlined sx={{fontSize: 16, opacity: 0.6}}/>
+            <InfoOutlined sx={{ fontSize: 16, opacity: 0.6 }} />
           </Tooltip>
         </Stack>
       </TableCell>
 
       <TableCell align="right">
-        <Typography fontWeight={600}>{row.messageCount.toLocaleString()}</Typography>
+        <Typography fontWeight={600}>
+          {row.messageCount.toLocaleString()}
+        </Typography>
       </TableCell>
 
       <TableCell>
@@ -72,15 +100,17 @@ export default function MyQueuesRow({row, index, onPause, onResume, onPurge}: Pr
           size="small"
           color={statusColor(row.status) as any}
           variant={row.status === 'Paused' ? 'outlined' : 'filled'}
-          sx={{fontWeight: 600}}
+          sx={{ fontWeight: 600 }}
         />
       </TableCell>
 
-      <TableCell sx={{display: {xs: 'none', md: 'table-cell'}}}>
-        <Typography variant="body2" sx={{opacity: 0.8}}>{row.lastActivity}</Typography>
+      <TableCell sx={{ display: { xs: 'none', md: 'table-cell' } }}>
+        <Typography variant="body2" sx={{ opacity: 0.8 }}>
+          {row.lastActivity}
+        </Typography>
       </TableCell>
 
-      <TableCell sx={{display: {xs: 'none', sm: 'table-cell'}}}>
+      <TableCell sx={{ display: { xs: 'none', sm: 'table-cell' } }}>
         <Stack spacing={0.5}>
           <LinearProgress
             variant="determinate"
@@ -91,11 +121,13 @@ export default function MyQueuesRow({row, index, onPause, onResume, onPurge}: Pr
               bgcolor: alpha(theme.palette.text.primary, 0.1),
               '& .MuiLinearProgress-bar': {
                 borderRadius: 6,
-                backgroundColor: healthColor(theme.palette as any, row.health),
+                backgroundColor: healthColor(theme, row.health), // 👈 aquí
               },
             }}
           />
-          <Typography variant="caption" sx={{opacity: 0.7}}>{row.health}%</Typography>
+          <Typography variant="caption" sx={{ opacity: 0.7 }}>
+            {row.health}%
+          </Typography>
         </Stack>
       </TableCell>
 
@@ -104,19 +136,23 @@ export default function MyQueuesRow({row, index, onPause, onResume, onPurge}: Pr
           {row.status !== 'Running' ? (
             <Tooltip title="Resume" arrow>
               <IconButton size="small" onClick={() => onResume?.(row)}>
-                <PlayArrowRounded/>
+                <PlayArrowRounded />
               </IconButton>
             </Tooltip>
           ) : (
             <Tooltip title="Pause" arrow>
               <IconButton size="small" onClick={() => onPause?.(row)}>
-                <PauseRounded/>
+                <PauseRounded />
               </IconButton>
             </Tooltip>
           )}
           <Tooltip title="Purge" arrow>
-            <IconButton size="small" color="error" onClick={() => onPurge?.(row)}>
-              <DeleteForeverRounded/>
+            <IconButton
+              size="small"
+              color="error"
+              onClick={() => onPurge?.(row)}
+            >
+              <DeleteForeverRounded />
             </IconButton>
           </Tooltip>
         </Stack>

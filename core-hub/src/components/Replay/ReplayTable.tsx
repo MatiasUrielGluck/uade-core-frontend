@@ -1,5 +1,3 @@
-// components/Replay/ReplayTable.tsx
-import * as React from "react";
 import {
   Box,
   TableContainer,
