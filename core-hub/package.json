@@ -17,6 +17,7 @@
     "axios": "^1.11.0",
     "echarts": "^5.6.0",
     "echarts-for-react": "^3.0.2",
+    "grid": "^4.10.8",
     "jwt-decode": "^4.0.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
