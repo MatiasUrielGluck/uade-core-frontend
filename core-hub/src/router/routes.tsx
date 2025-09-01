@@ -3,6 +3,8 @@ import MainLayout from "../layouts/MainLayout.tsx";
 import MyQueuesPage from "../pages/MyQueuesPage.tsx";
 import DashboardPage from '../pages/DashboardPage.tsx';
 import HealthPage from '../pages/HealthPage.tsx';
+import SearchPage from '../pages/SearchPage.tsx';
+import ReplayPage from '../pages/ReplayPage.tsx';
 
 export default [
   {
@@ -27,11 +29,11 @@ export default [
       },
       {
         path: 'search',
-        element: <><h1>Search</h1></>,
+        element: <SearchPage/>,
       },
       {
         path: 'replay',
-        element: <><h1>Replay</h1></>,
+        element: <ReplayPage/>,
       },
       {
         path: 'health',

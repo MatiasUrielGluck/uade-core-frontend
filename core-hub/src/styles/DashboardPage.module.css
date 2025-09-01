@@ -95,4 +95,132 @@
   overflow: visible; /* por si el contenedor del canvas corta algo interno */
 }
 
+/* ====== Mobile: stack 1 por fila y ancho 100% real ====== */
+@media (max-width: 900px) {
+  .page { padding-inline: 12px; }
+
+  /* En mobile cambiamos de grid → flex para evitar herencias/áreas que achican el track */
+  .grid {
+    display: flex !important;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+  }
+
+  /* Cada item ocupa todo el ancho disponible */
+  .grid > * {
+    width: 100% !important;
+    max-width: 100%;
+    min-width: 0;
+    align-self: stretch;
+  }
+
+  /* Asegura que wrappers intermedios y charts acompañen */
+  .card,
+  .toolbar,
+  .kpi1, .kpi2, .kpi3, .kpi4,
+  .throughput, .latency, .donut, .errors, .depth, .dlq { width: 100% !important; }
+
+  .donut > *, .throughput > *, .latency > *, .errors > *, .depth > *, .dlq > * {
+    width: 100% !important;
+    max-width: 100%;
+  }
+
+  /* Alturas más cómodas en mobile */
+  .kpi, .midCard { height: auto; }
+  .chart { width: 100% !important; height: 280px; }
+}
+
+/* --- Seguridad general: la página no permite scroll horizontal --- */
+.page { overflow-x: hidden; }
+
+/* ====== Mobile: 1 por fila, sin overflow y ancho completo ====== */
+@media (max-width: 900px) {
+  .page { padding-inline: 12px; }
+
+  /* dejamos grid en desktop/tablet; en mobile apilamos con flex para evitar “recuerdos” de anchos */
+  .grid {
+    display: flex !important;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+  }
+
+  .grid > * {
+    width: 100% !important;
+    max-width: 100%;
+    min-width: 0;
+    align-self: stretch;
+  }
+
+  /* cards y wrappers acompañan el ancho */
+  .card,
+  .toolbar,
+  .kpi1, .kpi2, .kpi3, .kpi4,
+  .throughput, .latency, .donut, .errors, .depth, .dlq {
+    width: 100% !important;
+    max-width: 100%;
+  }
+
+  .donut > *, .throughput > *, .latency > *, .errors > *, .depth > *, .dlq > * {
+    width: 100% !important;
+    max-width: 100%;
+  }
+
+  /* charts más compactos */
+  .kpi, .midCard { height: auto; }
+  .chart { width: 100% !important; height: 280px; }
+  
+  /* --- Toolbar: wrap de botones en mobile --- */
+  .toolbarButtons { 
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 8px; 
+    align-self: stretch; 
+  }
+  .toolbarBtn {
+    flex: 1 1 auto;          /* cada botón puede crecer/encoger */
+    min-width: 0;            /* evita empuje por contenido */
+    text-align: center;
+  }
+}
+
+/* Seguridad general: que nada empuje el viewport en X */
+.page { overflow-x: hidden; }
+
+/* Mobile */
+@media (max-width: 900px) {
+  .page { padding-inline: 12px; }
+
+  /* El grid lo forzamos a columna para apilar y ocupar 100% sin “recuerdos” de anchos */
+  .grid {
+    display: flex !important;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+  }
+  .grid > * {
+    width: 100% !important;
+    max-width: 100%;
+    min-width: 0;              /* evita que textos largos empujen */
+    align-self: stretch;
+  }
+
+  /* Charts acompañan el ancho y altura cómoda */
+  .kpi, .midCard { height: auto; }
+  .chart { width: 100% !important; height: 280px; }
+
+  /* Toolbar: que sus hijos no se pasen del ancho */
+  .toolbar .MuiCardContent { overflow: hidden; }
+  .toolbar .MuiCardContent > * { max-width: 100%; }
+
+  /* Botonera con wrap y sin empujar el ancho */
+  .toolbarButtons {
+    max-width: 100%;
+  }
+  .toolbarBtn {
+    min-width: 0;
+    text-align: center;
+  }
+}
 
