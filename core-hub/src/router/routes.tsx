@@ -1,6 +1,7 @@
 import { Navigate } from 'react-router-dom';
 import MainLayout from "../layouts/MainLayout.tsx";
-import MyQueuesPage from "../pages/MyQueuesPage.tsx";
+/*import MyQueuesPage from "../pages/MyQueuesPage.tsx";*/
+import DashboardPage from '../pages/DashboardPage.tsx';
 
 export default [
   {
@@ -17,12 +18,12 @@ export default [
       },
       {
         path: 'dashboard',
-        element: <><h1>Dashboard</h1></>,
+        element: <DashboardPage/>,
       },
-      {
+      /*{
         path: 'my-queues',
         element: <MyQueuesPage/>,
-      },
+      },*/
       {
         path: 'search',
         element: <><h1>Search</h1></>,

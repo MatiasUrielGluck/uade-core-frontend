@@ -1,0 +1,94 @@
+:root { --appbar-h: 64px; }
+
+/* SIN scrollbar propio; usa el del layout global */
+.page {
+  padding: 0px 0px 0px;
+}
+
+/* ===== GRID PRINCIPAL (4 columnas) =====
+   col 1: KPIs (ancho fijo)
+   col 2-4: contenido principal
+*/
+.grid {
+  display: grid;
+  grid-template-columns: 280px 1fr 1fr 1fr;
+  grid-template-rows: auto;
+  grid-template-areas:
+    "toolbar   toolbar   toolbar   toolbar"
+    "kpi1      throughput latency   donut"
+    "kpi2      throughput latency   donut"
+    "kpi3      errorsBar  errorsBar depth"
+    "kpi4      errorsBar  errorsBar depth"
+    "dlq       dlq        dlq       dlq";
+  gap: 16px;
+}
+
+/* Áreas */
+.toolbar   { grid-area: toolbar; }
+.kpi1      { grid-area: kpi1; }
+.kpi2      { grid-area: kpi2; }
+.kpi3      { grid-area: kpi3; }
+.kpi4      { grid-area: kpi4; }
+.throughput{ grid-area: throughput; }
+.latency   { grid-area: latency; }
+.donut     { grid-area: donut; }
+.errors    { grid-area: errorsBar; }
+.depth     { grid-area: depth; }
+.dlq       { grid-area: dlq; }
+
+/* Alturas */
+.kpi      { height: 150px; }   /* KPIs apiladas */
+.midCard  { height: 340px; }   /* fila 2 y fila 3 */
+
+/* Helpers */
+.card        { height: 100%; display:flex; flex-direction:column; }
+.cardContent { height: 100%; }
+.chart       { height: calc(100% - 56px); } /* deja espacio título + footer */
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "toolbar   toolbar"
+      "kpi1      kpi2"
+      "kpi3      kpi4"
+      "throughput latency"
+      "donut     donut"
+      "errors    depth"
+      "dlq       dlq";
+  }
+  .kpi, .midCard { height: auto; }
+  .chart { height: 320px; }
+}
+
+@media (max-width: 700px) {
+  .grid {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "toolbar"
+      "kpi1"
+      "kpi2"
+      "kpi3"
+      "kpi4"
+      "throughput"
+      "latency"
+      "donut"
+      "errors"
+      "depth"
+      "dlq";
+  }
+}
+
+.card {
+  position: relative;
+}
+
+.card:hover {
+  z-index: 5; /* el tooltip del gráfico y el axisPointer quedan por encima del card vecino */
+}
+
+.chart {
+  overflow: visible; /* por si el contenedor del canvas corta algo interno */
+}
+
