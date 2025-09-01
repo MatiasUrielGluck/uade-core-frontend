@@ -12,6 +12,7 @@ import {
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import MyQueuesTable from "../components/MyQueues/MyQueuesTable.tsx";
+import type { QueueRow, QueueStatus } from "../components/MyQueues/MyQueuesRow.tsx";
 
 const MOCK_QUEUES: QueueRow[] = [
   {
