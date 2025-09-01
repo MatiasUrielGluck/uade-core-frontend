@@ -62,7 +62,8 @@
   .chart { height: 320px; }
 }
 
-@media (max-width: 700px) {
+/* Mobile: cada card ocupa una fila */
+@media (max-width: 900px) {
   .grid {
     grid-template-columns: 1fr;
     grid-template-areas:
@@ -78,6 +79,8 @@
       "depth"
       "dlq";
   }
+  .kpi, .midCard { height: auto; }
+  .chart { height: 280px; }
 }
 
 .card {
@@ -91,4 +94,5 @@
 .chart {
   overflow: visible; /* por si el contenedor del canvas corta algo interno */
 }
+
 

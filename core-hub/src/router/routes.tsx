@@ -1,7 +1,8 @@
 import { Navigate } from 'react-router-dom';
 import MainLayout from "../layouts/MainLayout.tsx";
-/*import MyQueuesPage from "../pages/MyQueuesPage.tsx";*/
+import MyQueuesPage from "../pages/MyQueuesPage.tsx";
 import DashboardPage from '../pages/DashboardPage.tsx';
+import HealthPage from '../pages/HealthPage.tsx';
 
 export default [
   {
@@ -20,10 +21,10 @@ export default [
         path: 'dashboard',
         element: <DashboardPage/>,
       },
-      /*{
+      {
         path: 'my-queues',
         element: <MyQueuesPage/>,
-      },*/
+      },
       {
         path: 'search',
         element: <><h1>Search</h1></>,
@@ -34,7 +35,7 @@ export default [
       },
       {
         path: 'health',
-        element: <><h1>Health</h1></>,
+        element: <HealthPage/>,
       },
     ],
   },

@@ -1,0 +1,126 @@
+.page {
+  /* más padding a la derecha para que “acompañe” a la navbar */
+  padding: 16px 28px 32px 16px;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-auto-rows: minmax(140px, auto);
+  gap: 16px;
+}
+
+/* -------- placement (3 cols / full / 3 cols) -------- */
+.uptime   { grid-column: span 4; }
+.alerts   { grid-column: span 4; }
+.services { grid-column: span 4; }
+
+.consumers { grid-column: 1 / -1; }
+
+.cpu  { grid-column: span 4; }
+.ram  { grid-column: span 4; }
+.disk { grid-column: span 4; }
+
+/* -------- cards -------- */
+.card {
+  border-radius: 14px;
+}
+
+.cardContent {
+  overflow: visible;              /* tooltips y donuts no se cortan */
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;                  /* uniforme en todas */
+}
+
+.cardTitle {
+  margin-bottom: 4px;
+}
+
+.cardTitleCenter {
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+/* Uptime */
+.uptimeBody {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  align-items: center;
+  gap: 8px;
+}
+
+.tinyDonut { width: 100%; }
+
+/* table mini (Servicios) */
+.tableLike {
+  display: grid;
+  gap: 8px;
+}
+.tableHead,
+.tableRow {
+  display: grid;
+  grid-template-columns: 1fr 100px 90px;
+  align-items: center;
+  column-gap: 12px;
+}
+.tableBody {
+  display: grid;
+  gap: 8px;
+}
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* table wide (Consumidores) */
+.tableLikeWide { display: grid; gap: 10px; }
+.tableHeadWide,
+.tableRowWide {
+  display: grid;
+  grid-template-columns: 1.2fr 2fr 0.6fr 1fr 0.7fr;
+  align-items: center;
+  column-gap: 12px;
+}
+.tableBodyWide { display: grid; gap: 8px; }
+
+/* usage cards */
+.usageRow {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  align-items: center;
+  gap: 12px;
+}
+.usageText { display: grid; gap: 6px; }
+.usageBar {
+  height: 6px;
+  background: var(--mui-palette-action-hover, #e9eef5);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.usageBar > span {
+  display: block;
+  height: 100%;
+  background: #1e88e5;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .uptime, .alerts, .services,
+  .cpu, .ram, .disk { grid-column: span 6; }
+}
+@media (max-width: 900px) {
+  .uptime, .alerts, .services,
+  .cpu, .ram, .disk,
+  .consumers { grid-column: 1 / -1; }
+  .uptimeBody { grid-template-columns: 1fr; }
+  .usageRow   { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 1400px) {
+  .services { grid-column: 1 / -1; } /* antes span 6; lo abrimos */
+}
