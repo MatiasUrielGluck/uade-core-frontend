@@ -1,6 +1,7 @@
 import { Navigate } from 'react-router-dom';
 import MainLayout from "../layouts/MainLayout.tsx";
 import MyQueuesPage from "../pages/MyQueuesPage.tsx";
+import MySubscriptionsPage from "../pages/MySubscriptionsPage.tsx";
 import DashboardPage from '../pages/DashboardPage.tsx';
 import HealthPage from '../pages/HealthPage.tsx';
 import SearchPage from '../pages/SearchPage.tsx';
@@ -26,6 +27,10 @@ export default [
       {
         path: 'my-queues',
         element: <MyQueuesPage/>,
+      },
+      {
+        path: 'my-subscriptions',
+        element: <MySubscriptionsPage/>,
       },
       {
         path: 'search',

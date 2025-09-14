@@ -14,6 +14,7 @@ import Logout from '@mui/icons-material/Logout'
 import { Avatar } from "@mui/material";
 import DashboardOutlined from '@mui/icons-material/DashboardOutlined'
 import PlaylistAddCheckOutlined from '@mui/icons-material/PlaylistAddCheckOutlined'
+import SubscriptionsOutlined from '@mui/icons-material/SubscriptionsOutlined'
 import SearchOutlined from '@mui/icons-material/SearchOutlined'
 import ReplayOutlined from '@mui/icons-material/ReplayOutlined'
 import HealthAndSafetyOutlined from '@mui/icons-material/HealthAndSafetyOutlined'
@@ -29,6 +30,7 @@ type NavItem = {
 const navItems: NavItem[] = [
   {label: 'Dashboard', path: '/dashboard', icon: <DashboardOutlined/>},
   {label: 'My Queues', path: '/my-queues', icon: <PlaylistAddCheckOutlined/>},
+  {label: 'My Subscriptions', path: '/my-subscriptions', icon: <SubscriptionsOutlined/>},
   {label: 'Search', path: '/search', icon: <SearchOutlined/>},
   {label: 'Replay', path: '/replay', icon: <ReplayOutlined/>},
   {label: 'Health', path: '/health', icon: <HealthAndSafetyOutlined/>},
